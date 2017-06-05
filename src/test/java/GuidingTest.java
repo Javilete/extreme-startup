@@ -39,7 +39,7 @@ public class GuidingTest {
     }
 
     @Test
-    public void shouldReturnTheLargestBetweenAnyLengthOfNumbers() {
+    public void shouldReturnTheLargestBetweenFourLengthOfNumbers() {
         String question = "which of the following numbers is the largest: 417, 67, 15, 120";
 
         String response = startup.answer(question);
@@ -54,5 +54,23 @@ public class GuidingTest {
         String response = startup.answer(question);
 
         assertThat(response, is("40"));
+    }
+
+    @Test
+    public void shouldReturnCubAndSquareOfNumber() {
+        String question = "which of the following numbers is both a square and a cube: 121, 249";
+
+        String response = startup.answer(question);
+
+        assertThat(response, is("121"));
+    }
+
+    @Test
+    public void shouldReturnCubAndSquareOfNumberOfFourLengthOfNumbers() {
+        String question = "which of the following numbers is both a square and a cube: 236, 64, 592, 784";
+
+        String response = startup.answer(question);
+
+        assertThat(response, is("64"));
     }
 }

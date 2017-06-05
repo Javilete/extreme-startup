@@ -1,8 +1,8 @@
 package com.extreme.startup;
 
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Calculator {
 
@@ -10,11 +10,7 @@ public class Calculator {
         return String.valueOf(operation.apply(oper1, oper2));
     }
 
-    public String calculate(List<Integer> list) {
-        OptionalInt maxOpt = list.stream()
-                .mapToInt(number -> number)
-                .max();
-
-        return String.valueOf(maxOpt.orElse(0));
+    public String calculate(List<Integer> numbers, Function<List<Integer>,Integer> function) {
+        return String.valueOf(function.apply(numbers));
     }
 }
