@@ -17,7 +17,8 @@ public class ExtremeStartup {
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
-        MatcherService matcherService = new MatcherService(calculator);
+        TextDictionary textDictionary = new TextDictionary();
+        MatcherService matcherService = new MatcherService(calculator, textDictionary);
         final ExtremeStartup server = new ExtremeStartup("team name", matcherService);
         port(1347);
         get("/", (request, response) -> {

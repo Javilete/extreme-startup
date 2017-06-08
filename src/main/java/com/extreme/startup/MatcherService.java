@@ -9,9 +9,11 @@ import java.util.regex.Pattern;
 public class MatcherService {
 
     private final Calculator calculator;
+    private final TextDictionary textDictionary;
 
-    public MatcherService(Calculator calculator) {
+    public MatcherService(Calculator calculator, TextDictionary textDictionary) {
         this.calculator = calculator;
+        this.textDictionary = textDictionary;
     }
 
     public String findMatch(String question) {
@@ -67,7 +69,23 @@ public class MatcherService {
             return calculator.calculate(numbers, sqrtOperation);
         }
 
-        return null;
+        Matcher primeMatcher =
+                Pattern.compile(".*which of the following numbers are primes: (\\d+), (\\d+)").matcher(question);
+
+        if (primeMatcher.matches()) {
+            List<Integer> numbers = convertToList(primeMatcher);
+            return calculator.calculatePrimes(numbers);
+        }
+
+        Matcher primeWithFourMatcher =
+                Pattern.compile(".*which of the following numbers are primes: (\\d+), (\\d+), (\\d+), (\\d+)").matcher(question);
+
+        if (primeWithFourMatcher.matches()) {
+            List<Integer> numbers = convertToList(primeWithFourMatcher);
+            return calculator.calculatePrimes(numbers);
+        }
+
+        return textDictionary.getResponse(question.substring((question.indexOf("wh"))));
     }
 
     private List<Integer> convertToList(Matcher matcher) {

@@ -57,4 +57,13 @@ public class CalculatorShould {
 
         assertThat(result, is("121"));
     }
+
+    @Test
+    public void returnListOfPrimeNumbers() {
+        List<Integer> numbers = Arrays.asList(307, 420, 173, 347);
+
+        String result = calculator.calculatePrimes(numbers);
+
+        assertThat(result, is("307, 173, 347"));
+    }
 }

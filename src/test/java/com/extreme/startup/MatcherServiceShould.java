@@ -14,7 +14,6 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
@@ -23,6 +22,9 @@ public class MatcherServiceShould {
 
     @Mock
     private Calculator calculator;
+
+    @Mock
+    private TextDictionary textDictionary;
 
     @Captor
     private ArgumentCaptor<BiFunction> biFunctionArgumentCaptor;
@@ -34,7 +36,7 @@ public class MatcherServiceShould {
 
     @Before
     public void setUp() throws Exception {
-        matcherService = new MatcherService(calculator);
+        matcherService = new MatcherService(calculator, textDictionary);
     }
 
     @Test
@@ -99,5 +101,34 @@ public class MatcherServiceShould {
 
         verify(calculator).calculate(eq(list), functionArgumentCaptor.capture());
         assertEquals(64, functionArgumentCaptor.getValue().apply(list));
+    }
+
+    @Test
+    public void callCalculatorToGetPrimeNumbers() {
+        String question = "which of the following numbers are primes: 901, 223";
+        List<Integer> list = Arrays.asList(901, 223);
+
+        matcherService.findMatch(question);
+
+        verify(calculator).calculatePrimes(eq(list));
+    }
+
+    @Test
+    public void callCalculatorToGetPrimeNumbersOfFourLength() {
+        String question = "which of the following numbers are primes: 307, 420, 173, 347";
+        List<Integer> list = Arrays.asList(307, 420, 173, 347);
+
+        matcherService.findMatch(question);
+
+        verify(calculator).calculatePrimes(eq(list));
+    }
+
+    @Test
+    public void callQuestionDictionary() {
+        String question = "who is the Prime Minister of Great Britain";
+
+        matcherService.findMatch(question);
+
+        verify(textDictionary).getResponse(eq(question));
     }
 }
