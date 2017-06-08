@@ -26,6 +26,9 @@ public class MatcherServiceShould {
     @Mock
     private TextDictionary textDictionary;
 
+    @Mock
+    private OperatorDictionary operatorDictionary;
+
     @Captor
     private ArgumentCaptor<BiFunction> biFunctionArgumentCaptor;
 
@@ -36,7 +39,16 @@ public class MatcherServiceShould {
 
     @Before
     public void setUp() throws Exception {
-        matcherService = new MatcherService(calculator, textDictionary);
+        matcherService = new MatcherService(calculator, textDictionary, operatorDictionary);
+    }
+
+    @Test
+    public void getOperatorBasedOnTheQuestion() {
+        String question = "what is 3 plus 16";
+
+        matcherService.findMatch(question);
+
+        verify(operatorDictionary).getOperator(eq(question));
     }
 
     @Test

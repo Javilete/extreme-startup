@@ -1,4 +1,5 @@
 import com.extreme.startup.Calculator;
+import com.extreme.startup.OperatorDictionary;
 import com.extreme.startup.TextDictionary;
 import com.extreme.startup.ExtremeStartup;
 import com.extreme.startup.MatcherService;
@@ -12,6 +13,7 @@ public class GuidingTest {
 
     private Calculator calculator;
     private TextDictionary textDictionary;
+    private OperatorDictionary operatorDictionary;
     private MatcherService matcherService;
     private ExtremeStartup startup;
 
@@ -19,7 +21,8 @@ public class GuidingTest {
     public void setUp() throws Exception {
         calculator = new Calculator();
         textDictionary = new TextDictionary();
-        matcherService = new MatcherService(calculator, textDictionary);
+        operatorDictionary = new OperatorDictionary();
+        matcherService = new MatcherService(calculator, textDictionary, operatorDictionary);
         startup = new ExtremeStartup("TeamSpirit", matcherService);
     }
 

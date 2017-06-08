@@ -10,22 +10,28 @@ public class MatcherService {
 
     private final Calculator calculator;
     private final TextDictionary textDictionary;
+    private final OperatorDictionary operatorDictionary;
 
-    public MatcherService(Calculator calculator, TextDictionary textDictionary) {
+    public MatcherService(Calculator calculator, TextDictionary textDictionary, OperatorDictionary operatorDictionary) {
         this.calculator = calculator;
         this.textDictionary = textDictionary;
+        this.operatorDictionary = operatorDictionary;
     }
 
     public String findMatch(String question) {
-        Matcher sumMatcher =
-                Pattern.compile(".*what is (\\d+) plus (\\d+)").matcher(question);
+//        Matcher sumMatcher =
+//                Pattern.compile(".*what is (\\d+) plus (\\d+)").matcher(question);
+//
+//        if (sumMatcher.matches()) {
+//            return calculator.calculate(
+//                    Integer.parseInt(sumMatcher.group(1)),
+//                    Integer.parseInt(sumMatcher.group(2)),
+//                    (a, b) -> a + b);
+//        }
 
-        if (sumMatcher.matches()) {
-            return calculator.calculate(
-                    Integer.parseInt(sumMatcher.group(1)),
-                    Integer.parseInt(sumMatcher.group(2)),
-                    (a, b) -> a + b);
-        }
+        Operator operator = operatorDictionary.getOperator(question);
+        operator.execute()
+
 
         Matcher largestMatcher =
                 Pattern.compile(".*which of the following numbers is the largest: (\\d+), (\\d+)").matcher(question);
