@@ -1,8 +1,6 @@
-import com.extreme.startup.Calculator;
-import com.extreme.startup.OperatorDictionary;
+import com.extreme.startup.service.MatcherService;
 import com.extreme.startup.TextDictionary;
 import com.extreme.startup.ExtremeStartup;
-import com.extreme.startup.MatcherService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,18 +9,14 @@ import static org.junit.Assert.assertThat;
 
 public class GuidingTest {
 
-    private Calculator calculator;
     private TextDictionary textDictionary;
-    private OperatorDictionary operatorDictionary;
     private MatcherService matcherService;
     private ExtremeStartup startup;
 
     @Before
     public void setUp() throws Exception {
-        calculator = new Calculator();
         textDictionary = new TextDictionary();
-        operatorDictionary = new OperatorDictionary();
-        matcherService = new MatcherService(calculator, textDictionary, operatorDictionary);
+        matcherService = new MatcherService(textDictionary);
         startup = new ExtremeStartup("TeamSpirit", matcherService);
     }
 

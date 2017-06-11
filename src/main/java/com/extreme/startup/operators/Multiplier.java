@@ -1,19 +1,19 @@
-package com.extreme.startup;
+package com.extreme.startup.operators;
 
 import java.util.List;
 import java.util.regex.Matcher;
 
-public class Summer extends Operator{
+public class Multiplier extends Operator{
 
-    private static Summer INSTANCE = null;
+    private static Multiplier INSTANCE = null;
 
-    private Summer() {
+    private Multiplier() {
 
     }
 
-    public static Summer getInstance() {
+    public static Multiplier getInstance() {
         if(INSTANCE == null) {
-            INSTANCE = new Summer();
+            INSTANCE = new Multiplier();
         }
         return INSTANCE;
     }
@@ -22,9 +22,9 @@ public class Summer extends Operator{
     public String execute(Matcher matcher) {
         List<Integer> numbers = extractValues(matcher);
         int result = numbers.stream()
-                .mapToInt(n -> n)
-                .sum();
+                .reduce(1, (a, b) -> a * b);
 
         return String.valueOf(result);
+
     }
 }
