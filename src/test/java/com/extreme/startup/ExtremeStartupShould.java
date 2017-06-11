@@ -1,7 +1,6 @@
 package com.extreme.startup;
 
-import com.extreme.startup.ExtremeStartup;
-import com.extreme.startup.MatcherService;
+import com.extreme.startup.service.MatcherService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,5 +1,7 @@
 package com.extreme.startup;
 
+import com.extreme.startup.service.MatcherService;
+
 import static spark.Spark.get;
 import static spark.Spark.port;
 
@@ -16,9 +18,8 @@ public class ExtremeStartup {
     }
 
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
         TextDictionary textDictionary = new TextDictionary();
-        MatcherService matcherService = new MatcherService(calculator, textDictionary);
+        MatcherService matcherService = new MatcherService(textDictionary);
         final ExtremeStartup server = new ExtremeStartup("team name", matcherService);
         port(1347);
         get("/", (request, response) -> {
