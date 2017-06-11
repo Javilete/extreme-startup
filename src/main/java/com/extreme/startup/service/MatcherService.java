@@ -46,12 +46,10 @@ public class MatcherService {
     }
 
     public String findMatch(String question) {
-        Optional<Matcher> matcherOpt = patternDictionary.keySet().stream()
+        Optional<Matcher> optMatcher = patternDictionary.keySet().stream()
                 .map(p -> p.matcher(question))
                 .filter(m -> m.matches())
                 .findFirst();
-
-        Optional<Matcher> optMatcher = matcherOpt;
 
         if (optMatcher.isPresent()) {
             Matcher matcher = optMatcher.get();
