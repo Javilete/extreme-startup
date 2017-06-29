@@ -71,4 +71,22 @@ public class MatcherServiceShould {
 
         assertThat(result, is("Theresa May"));
     }
+
+    @Test
+    public void returnSubstractWhenTheQuestionIsMinus() {
+        String question = "what is 3 minus 8";
+
+        String result = matcherService.findMatch(question);
+
+        assertThat(result, is("-5"));
+    }
+
+    @Test
+    public void returnTheNumberSpecifyInTheFibonacciSequence() {
+        String question = "what is the 10th number in the Fibonacci sequence";
+
+        String response = matcherService.findMatch(question);
+
+        assertThat(response, is("55"));
+    }
 }
