@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
 
 public class MatcherServiceShould {
 
@@ -70,5 +71,41 @@ public class MatcherServiceShould {
         String result = matcherService.findMatch(question);
 
         assertThat(result, is("Theresa May"));
+    }
+
+    @Test
+    public void returnSubstractWhenTheQuestionIsMinus() {
+        String question = "what is 3 minus 8";
+
+        String result = matcherService.findMatch(question);
+
+        assertThat(result, is("-5"));
+    }
+
+    @Test
+    public void returnTheNumberSpecifyInTheFibonacciSequence() {
+        String question = "what is the 10th number in the Fibonacci sequence";
+
+        String response = matcherService.findMatch(question);
+
+        assertThat(response, is("55"));
+    }
+
+    @Test
+    public void callPowExecuteMethod() {
+        String question = "what is 2 to the power of 11";
+
+        String response = matcherService.findMatch(question);
+
+        assertThat(response, is("2048"));
+    }
+
+    @Test
+    public void shouldReturnSumOfMoreThanTwoNumbers() {
+        String question = "what is 12 plus 7 plus 2";
+
+        String response = matcherService.findMatch(question);
+
+        assertThat(response, is("21"));
     }
 }

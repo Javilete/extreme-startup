@@ -100,4 +100,40 @@ public class GuidingTest {
 
         assertThat(response, is("Theresa May"));
     }
+
+    @Test
+    public void shouldReturnTheSubstractionResult() {
+        String question = "what is 3 minus 8";
+
+        String response = startup.answer(question);
+
+        assertThat(response, is("-5"));
+    }
+
+    @Test
+    public void shouldReturnTheNumberSpecifyInTheFibonacciSequence() {
+        String question = "what is the 10th number in the Fibonacci sequence";
+
+        String response = startup.answer(question);
+
+        assertThat(response, is("55"));
+    }
+
+    @Test
+    public void shouldReturnThePowerOfAnumber() {
+        String question = "what is 2 to the power of 11";
+
+        String response = startup.answer(question);
+
+        assertThat(response, is("2048"));
+    }
+
+    @Test
+    public void shouldReturnSumOfMoreThanTwoNumbers() {
+        String question = "what is 12 plus 7 plus 2";
+
+        String response = startup.answer(question);
+
+        assertThat(response, is("21"));
+    }
 }
