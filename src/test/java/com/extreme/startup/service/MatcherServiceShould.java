@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
 
 public class MatcherServiceShould {
 
@@ -88,5 +89,23 @@ public class MatcherServiceShould {
         String response = matcherService.findMatch(question);
 
         assertThat(response, is("55"));
+    }
+
+    @Test
+    public void callPowExecuteMethod() {
+        String question = "what is 2 to the power of 11";
+
+        String response = matcherService.findMatch(question);
+
+        assertThat(response, is("2048"));
+    }
+
+    @Test
+    public void shouldReturnSumOfMoreThanTwoNumbers() {
+        String question = "what is 12 plus 7 plus 2";
+
+        String response = matcherService.findMatch(question);
+
+        assertThat(response, is("21"));
     }
 }
